@@ -3,7 +3,7 @@
   	<modelVersion>4.0.0</modelVersion>
   	<groupId>io.github.thebusybiscuit</groupId>
   	<artifactId>ExtraHeads</artifactId>
-  	<version>1.1</version>
+  	<version>UNOFFICIAL</version>
   	
     <properties>
 	    <maven.compiler.source>1.8</maven.compiler.source>
@@ -50,19 +50,19 @@
         <dependency>
            	<groupId>org.bukkit</groupId>
            	<artifactId>bukkit</artifactId>
-            <version>1.14.4-R0.1-SNAPSHOT</version>
+            <version>1.15-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
 	        <groupId>com.github.TheBusyBiscuit</groupId>
 	        <artifactId>CS-CoreLib</artifactId>
-	        <version>45909a0324</version>
+	        <version>ec5b4c24e3</version>
             <scope>provided</scope>
 	    </dependency>
         <dependency>
 	    	<groupId>com.github.TheBusyBiscuit</groupId>
 	   		<artifactId>Slimefun4</artifactId>
-	   		<version>4bb9abd247</version>
+	   		<version>33adb7e79a</version>
             <scope>provided</scope>
 	    </dependency>
     </dependencies>

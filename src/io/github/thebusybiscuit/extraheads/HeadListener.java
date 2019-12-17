@@ -27,7 +27,7 @@ public class HeadListener implements Listener {
 		double chance = plugin.getCfg().getDouble("chances." + e.getEntityType().toString());
 		Player killer = e.getEntity().getKiller();
 		
-		if (killer != null && SlimefunManager.isItemSimiliar(killer.getInventory().getItemInMainHand(), SlimefunItems.SWORD_OF_BEHEADING, true)) {
+		if (killer != null && SlimefunManager.isItemSimilar(killer.getInventory().getItemInMainHand(), SlimefunItems.SWORD_OF_BEHEADING, true)) {
 			chance *= plugin.getCfg().getDouble("options.sword-of-beheading-multiplier");
 		}
 		

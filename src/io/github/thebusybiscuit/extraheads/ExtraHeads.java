@@ -10,13 +10,14 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.Item.CustomItem;
 import me.mrCookieSlime.CSCoreLibPlugin.general.String.StringUtils;
-import me.mrCookieSlime.CSCoreLibPlugin.general.World.CustomSkull;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.Category;
+import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import me.mrCookieSlime.Slimefun.bstats.bukkit.Metrics;
 import me.mrCookieSlime.Slimefun.cscorelib2.config.Config;
+import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
+import me.mrCookieSlime.Slimefun.cscorelib2.skull.SkullItem;
 import me.mrCookieSlime.Slimefun.cscorelib2.updater.GitHubBuildsUpdater;
 import me.mrCookieSlime.Slimefun.cscorelib2.updater.Updater;
 
@@ -24,7 +25,7 @@ public class ExtraHeads extends JavaPlugin {
 	
 	private Category category;
 	private RecipeType recipeType;
-	private Map<EntityType, ItemStack> mobs;
+	private final Map<EntityType, ItemStack> mobs = new EnumMap<>(EntityType.class);
 	private Config cfg;
 	
 	private Logger logger;
@@ -33,7 +34,6 @@ public class ExtraHeads extends JavaPlugin {
 	public void onEnable() {
 		cfg = new Config(this);
 		logger = getLogger();
-		mobs = new EnumMap<>(EntityType.class);
 		
 		// Setting up bStats
 		new Metrics(this);
@@ -49,7 +49,7 @@ public class ExtraHeads extends JavaPlugin {
 		if (updater != null && cfg.getBoolean("options.auto-update")) updater.start();
 		
 		try {
-			category = new Category(new CustomItem(CustomSkull.getItem("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODIyZDhlNzUxYzhmMmZkNGM4OTQyYzQ0YmRiMmY1Y2E0ZDhhZThlNTc1ZWQzZWIzNGMxOGE4NmU5M2IifX19"), "&7Extra Heads", "", "&a> Click to open"), 1);
+			category = new Category(new CustomItem(SkullItem.fromBase64("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODIyZDhlNzUxYzhmMmZkNGM4OTQyYzQ0YmRiMmY1Y2E0ZDhhZThlNTc1ZWQzZWIzNGMxOGE4NmU5M2IifX19"), "&7Extra Heads", "", "&a> Click to open"), 1);
 		} catch (Exception x) {
 			logger.log(Level.SEVERE, "An Error occured while creating a Category for ExtraHeads v" + getDescription().getVersion(), x);
 			getServer().getPluginManager().disablePlugin(this);
@@ -111,9 +111,9 @@ public class ExtraHeads extends JavaPlugin {
 		try {
 			double chance = cfg.getOrSetDefault("chances." + type.toString(), 5.0);
 			
-			ItemStack item = new CustomItem(CustomSkull.getItem(texture), "&r" + name);
+			SlimefunItemStack item = new SlimefunItemStack(type.toString() + "_HEAD", texture, "&r" + name);
 			
-			new MobHead(category, item, type.toString() + "_HEAD", recipeType,
+			new MobHead(category, item, recipeType,
 			new CustomItem(item, "&rKill 1 " + StringUtils.format(type.toString()), "&7Chance: &e" + chance + "%"))
 			.register(() -> mobs.put(type, item));
 		}
