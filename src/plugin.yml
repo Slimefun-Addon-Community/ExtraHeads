@@ -1,5 +1,5 @@
 name: ExtraHeads
-version: 1.1
+version: ${project.version}
 author: TheBusyBiscuit
 website: http://TheBusyBiscuit.github.io/
 depend: [Slimefun, CS-CoreLib]
