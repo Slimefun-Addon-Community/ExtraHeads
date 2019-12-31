@@ -23,12 +23,13 @@ import me.mrCookieSlime.Slimefun.cscorelib2.updater.Updater;
 
 public class ExtraHeads extends JavaPlugin {
 	
+	private final Map<EntityType, ItemStack> mobs = new EnumMap<>(EntityType.class);
+	
+	private Config cfg;
+	private Logger logger;
+	
 	private Category category;
 	private RecipeType recipeType;
-	private final Map<EntityType, ItemStack> mobs = new EnumMap<>(EntityType.class);
-	private Config cfg;
-	
-	private Logger logger;
 	
 	@Override
 	public void onEnable() {
@@ -37,24 +38,15 @@ public class ExtraHeads extends JavaPlugin {
 		
 		// Setting up bStats
 		new Metrics(this);
-
-		// Setting up the Auto-Updater
-		Updater updater = null;
-
+		
 		if (getDescription().getVersion().startsWith("DEV - ")) {
 			// If we are using a development build, we want to switch to our custom 
-			updater = new GitHubBuildsUpdater(this, getFile(), "TheBusyBiscuit/ExtraHeads/master");
+			Updater updater = new GitHubBuildsUpdater(this, getFile(), "TheBusyBiscuit/ExtraHeads/master");
+			
+			if (cfg.getBoolean("options.auto-update")) updater.start();
 		}
-
-		if (updater != null && cfg.getBoolean("options.auto-update")) updater.start();
 		
-		try {
-			category = new Category(new CustomItem(SkullItem.fromBase64("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODIyZDhlNzUxYzhmMmZkNGM4OTQyYzQ0YmRiMmY1Y2E0ZDhhZThlNTc1ZWQzZWIzNGMxOGE4NmU5M2IifX19"), "&7Extra Heads", "", "&a> Click to open"), 1);
-		} catch (Exception x) {
-			logger.log(Level.SEVERE, "An Error occured while creating a Category for ExtraHeads v" + getDescription().getVersion(), x);
-			getServer().getPluginManager().disablePlugin(this);
-			return;
-		}
+		category = new Category(new CustomItem(SkullItem.fromBase64("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODIyZDhlNzUxYzhmMmZkNGM4OTQyYzQ0YmRiMmY1Y2E0ZDhhZThlNTc1ZWQzZWIzNGMxOGE4NmU5M2IifX19"), "&7Extra Heads", "", "&a> Click to open"), 1);
 		
 		recipeType = new RecipeType(new CustomItem(Material.SKELETON_SKULL, "&6Kill the specified Mob"));
 		

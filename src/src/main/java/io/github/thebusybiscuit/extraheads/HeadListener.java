@@ -10,7 +10,7 @@ import me.mrCookieSlime.Slimefun.Setup.SlimefunManager;
 
 public class HeadListener implements Listener {
 	
-	private ExtraHeads plugin;
+	private final ExtraHeads plugin;
 	
 	public HeadListener(ExtraHeads plugin) {
 		this.plugin = plugin;
