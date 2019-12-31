@@ -1,8 +1,0 @@
-name: ExtraHeads
-version: ${project.version}
-author: TheBusyBiscuit
-website: http://TheBusyBiscuit.github.io/
-depend: [Slimefun, CS-CoreLib]
-
-main: io.github.thebusybiscuit.extraheads.ExtraHeads
-api-version: 1.14
