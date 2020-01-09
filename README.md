@@ -9,7 +9,7 @@ You can increase your chances by using a Sword of Beheading.
 [Read more...](https://github.com/TheBusyBiscuit/Slimefun4/wiki/ExtraHeads)
 
 ## Download ExtraHeads
-You can download ChestTerminal right here: [Development Builds](https://thebusybiscuit.github.io/builds/TheBusyBiscuit/ExtraHeads/master/)
+You can download ExtraHeads right here: [Development Builds](https://thebusybiscuit.github.io/builds/TheBusyBiscuit/ExtraHeads/master/)
 
 <p align="center">
   <a href="https://thebusybiscuit.github.io/builds/TheBusyBiscuit/ExtraHeads/master/">
