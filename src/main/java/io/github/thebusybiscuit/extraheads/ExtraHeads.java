@@ -6,6 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -37,7 +38,7 @@ public class ExtraHeads extends JavaPlugin {
 		logger = getLogger();
 		
 		// Setting up bStats
-		new Metrics(this);
+		new Metrics(this, 5650);
 		
 		if (getDescription().getVersion().startsWith("DEV - ")) {
 			// If we are using a development build, we want to switch to our custom 
@@ -46,7 +47,7 @@ public class ExtraHeads extends JavaPlugin {
 			if (cfg.getBoolean("options.auto-update")) updater.start();
 		}
 		
-		category = new Category(new CustomItem(SkullItem.fromBase64("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODIyZDhlNzUxYzhmMmZkNGM4OTQyYzQ0YmRiMmY1Y2E0ZDhhZThlNTc1ZWQzZWIzNGMxOGE4NmU5M2IifX19"), "&7Extra Heads", "", "&a> Click to open"), 1);
+		category = new Category(new NamespacedKey(this, "heads"), new CustomItem(SkullItem.fromBase64("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODIyZDhlNzUxYzhmMmZkNGM4OTQyYzQ0YmRiMmY1Y2E0ZDhhZThlNTc1ZWQzZWIzNGMxOGE4NmU5M2IifX19"), "&7Extra Heads", "", "&a> Click to open"), 1);
 		
 		recipeType = new RecipeType(new CustomItem(Material.SKELETON_SKULL, "&6Kill the specified Mob"));
 		
