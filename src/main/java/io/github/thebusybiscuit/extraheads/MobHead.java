@@ -15,9 +15,9 @@ public class MobHead extends SlimefunItem {
 		super(category, item, recipeType, new ItemStack[] {null, null, null, null, recipe, null, null, null, null});
 	}
 
-	public void register(Runnable runnable) {
+	public void register(ExtraHeads plugin, Runnable runnable) {
 		this.runnable = runnable;
-		this.register();
+		register(plugin);
 	}
 	
 	@Override
