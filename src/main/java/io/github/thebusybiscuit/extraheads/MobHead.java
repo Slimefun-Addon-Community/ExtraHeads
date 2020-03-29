@@ -9,22 +9,22 @@ import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 
 public class MobHead extends SlimefunItem {
 
-	private Runnable runnable;
-	
-	public MobHead(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack recipe) {
-		super(category, item, recipeType, new ItemStack[] {null, null, null, null, recipe, null, null, null, null});
-	}
+    private Runnable runnable;
 
-	public void register(ExtraHeads plugin, Runnable runnable) {
-		this.runnable = runnable;
-		register(plugin);
-	}
-	
-	@Override
-	public void postRegister() {
-		super.postRegister();
-		
-		if (!isDisabled()) runnable.run();
-	}
+    public MobHead(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack recipe) {
+        super(category, item, recipeType, new ItemStack[] { null, null, null, null, recipe, null, null, null, null });
+    }
+
+    public void register(ExtraHeads plugin, Runnable runnable) {
+        this.runnable = runnable;
+        register(plugin);
+    }
+
+    @Override
+    public void postRegister() {
+        super.postRegister();
+
+        if (!isDisabled()) runnable.run();
+    }
 
 }
