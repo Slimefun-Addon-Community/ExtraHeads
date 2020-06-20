@@ -24,7 +24,9 @@ public class MobHead extends SlimefunItem {
     public void postRegister() {
         super.postRegister();
 
-        if (!isDisabled()) runnable.run();
+        if (!isDisabled()) {
+            runnable.run();
+        }
     }
 
 }
