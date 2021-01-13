@@ -15,7 +15,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
-import me.mrCookieSlime.CSCoreLibPlugin.general.String.StringUtils;
+import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.Category;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
@@ -117,7 +117,7 @@ public class ExtraHeads extends JavaPlugin implements SlimefunAddon {
         try {
             double chance = cfg.getOrSetDefault("chances." + type.toString(), 5.0);
             SlimefunItemStack item = new SlimefunItemStack(type.toString() + "_HEAD", texture, "&r" + name);
-            new MobHead(category, item, recipeType, new CustomItem(item, "&rKill 1 " + StringUtils.format(type.toString()), "&7Chance: &e" + chance + "%")).register(this, () -> mobs.put(type, item));
+            new MobHead(category, item, recipeType, new CustomItem(item, "&rKill 1 " + ChatUtils.humanize(type.name()), "&7Chance: &e" + chance + "%")).register(this, () -> mobs.put(type, item));
         }
         catch (Exception x) {
             logger.log(Level.WARNING, x, () -> "Could not load Mob Head for Entity: " + type);
