@@ -12,18 +12,18 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
-import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerHead;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerSkin;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.updater.GitHubBuildsUpdater;
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
-import me.mrCookieSlime.Slimefun.Lists.RecipeType;
-import me.mrCookieSlime.Slimefun.Objects.Category;
-import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
-import me.mrCookieSlime.Slimefun.cscorelib2.config.Config;
-import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
-import me.mrCookieSlime.Slimefun.cscorelib2.skull.SkullItem;
-import me.mrCookieSlime.Slimefun.cscorelib2.updater.GitHubBuildsUpdater;
-import me.mrCookieSlime.Slimefun.cscorelib2.updater.Updater;
 
 public class ExtraHeads extends JavaPlugin implements SlimefunAddon {
 
@@ -32,7 +32,7 @@ public class ExtraHeads extends JavaPlugin implements SlimefunAddon {
     private Config cfg;
     private Logger logger;
 
-    private Category category;
+    private ItemGroup itemGroup;
     private RecipeType recipeType;
 
     @Override
@@ -43,15 +43,12 @@ public class ExtraHeads extends JavaPlugin implements SlimefunAddon {
         // Setting up bStats
         new Metrics(this, 5650);
 
-        if (getDescription().getVersion().startsWith("DEV - ")) {
-            // If we are using a development build, we want to switch to our custom
-            Updater updater = new GitHubBuildsUpdater(this, getFile(), "TheBusyBiscuit/ExtraHeads/master");
-
-            if (cfg.getBoolean("options.auto-update")) updater.start();
+        if (cfg.getBoolean("options.auto-update") && getDescription().getVersion().startsWith("DEV - ")) {
+            new GitHubBuildsUpdater(this, getFile(), "TheBusyBiscuit/ExtraHeads/master").start();
         }
 
-        category = new Category(new NamespacedKey(this, "heads"), new CustomItem(SkullItem.fromHash("5f1379a82290d7abe1efaabbc70710ff2ec02dd34ade386bc00c930c461cf932"), "&7Extra Heads", "", "&a> Click to open"), 1);
-        recipeType = new RecipeType(new NamespacedKey(this, "decapitation"), new CustomItem(Material.IRON_SWORD, "&6Kill the specified Mob"));
+        itemGroup = new ItemGroup(new NamespacedKey(this, "heads"), new CustomItemStack(PlayerHead.getItemStack(PlayerSkin.fromHashCode("5f1379a82290d7abe1efaabbc70710ff2ec02dd34ade386bc00c930c461cf932")), "&7Extra Heads", "", "&a> Click to open"), 1);
+        recipeType = new RecipeType(new NamespacedKey(this, "decapitation"), new CustomItemStack(Material.IRON_SWORD, "&6Kill the specified Mob"));
 
         registerHead("Bat Head", EntityType.BAT, "2796aa6d18edc5b724bd89e983bc3215a41bf775d112635e9b5835d1b8ad20cb");
         registerHead("Blaze Head", EntityType.BLAZE, "b78ef2e4cf2c41a2d14bfde9caff10219f5b1bf5b35a49eb51c6467882cb5f0");
@@ -91,7 +88,7 @@ public class ExtraHeads extends JavaPlugin implements SlimefunAddon {
         registerHead("Wither Head", EntityType.WITHER, "cdf74e323ed41436965f5c57ddf2815d5332fe999e68fbb9d6cf5c8bd4139f");
         registerHead("Zombie Villager Head", EntityType.ZOMBIE_VILLAGER, "a6224941314bca2ebbb66b10ffd94680cc98c3435eeb71a228a08fd42c24db");
 
-        if (SlimefunPlugin.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_14)) {
+        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_14)) {
             registerHead("Ravager Head", EntityType.RAVAGER, "1cb9f139f9489d86e410a06d8cbc670c8028137508e3e4bef612fe32edd60193");
             registerHead("Pillager Head", EntityType.PILLAGER, "4aee6bb37cbfc92b0d86db5ada4790c64ff4468d68b84942fde04405e8ef5333");
             registerHead("Fox Head", EntityType.FOX, "46cff7a19e683a08e4587ea1457880313d5f341f346ceb5b0551195d810e3");
@@ -99,7 +96,7 @@ public class ExtraHeads extends JavaPlugin implements SlimefunAddon {
             registerHead("Wandering Trader Head", EntityType.WANDERING_TRADER, "5f1379a82290d7abe1efaabbc70710ff2ec02dd34ade386bc00c930c461cf932");
         }
         
-        if (SlimefunPlugin.getMinecraftVersion().isBefore(MinecraftVersion.MINECRAFT_1_16)) {
+        if (Slimefun.getMinecraftVersion().isBefore(MinecraftVersion.MINECRAFT_1_16)) {
             registerHead("Zombie Pigman Head", EntityType.valueOf("PIG_ZOMBIE"), "74e9c6e98582ffd8ff8feb3322cd1849c43fb16b158abb11ca7b42eda7743eb");
         }
         else {
@@ -117,7 +114,7 @@ public class ExtraHeads extends JavaPlugin implements SlimefunAddon {
         try {
             double chance = cfg.getOrSetDefault("chances." + type.toString(), 5.0);
             SlimefunItemStack item = new SlimefunItemStack(type.toString() + "_HEAD", texture, "&r" + name);
-            new MobHead(category, item, recipeType, new CustomItem(item, "&rKill 1 " + ChatUtils.humanize(type.name()), "&7Chance: &e" + chance + "%")).register(this, () -> mobs.put(type, item));
+            new MobHead(itemGroup, item, recipeType, new CustomItemStack(item, "&rKill 1 " + ChatUtils.humanize(type.name()), "&7Chance: &e" + chance + "%")).register(this, () -> mobs.put(type, item));
         }
         catch (Exception x) {
             logger.log(Level.WARNING, x, () -> "Could not load Mob Head for Entity: " + type);
