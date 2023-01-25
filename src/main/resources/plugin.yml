@@ -4,4 +4,4 @@ author: TheBusyBiscuit
 depend: [Slimefun]
 
 main: io.github.thebusybiscuit.extraheads.ExtraHeads
-api-version: 1.13
+api-version: 1.16
