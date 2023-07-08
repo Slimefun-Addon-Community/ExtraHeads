@@ -26,6 +26,5 @@ assignees: ''
 <!-- You can also just run "/sf versions" and show us a screenshot of that. -->
 
  - Minecraft Version:
- - CS-CoreLib Version:
  - Slimefun Version:
  - ExtraHeads Version:
