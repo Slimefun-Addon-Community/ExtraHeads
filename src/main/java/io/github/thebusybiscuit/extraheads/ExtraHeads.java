@@ -24,8 +24,6 @@ import io.github.thebusybiscuit.slimefun4.libraries.dough.updater.GitHubBuildsUp
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 
-import javax.annotation.Nonnull;
-
 public class ExtraHeads extends JavaPlugin implements SlimefunAddon {
 
     private final Map<EntityType, ItemStack> mobs = new EnumMap<>(EntityType.class);
