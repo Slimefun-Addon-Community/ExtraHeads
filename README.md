@@ -7,13 +7,8 @@ There are a ton of new heads that are obtainable via killing the corresponding m
 You can increase your chances by using a Sword of Beheading.
 
 ## Download ExtraHeads
-You can download ExtraHeads right here: [Development Builds](https://thebusybiscuit.github.io/builds/TheBusyBiscuit/ExtraHeads/master/)
+You can download ExtraHeads right here: [Dev Builds](https://blob.build/project/ExtraHeads)
 
-<p align="center">
-  <a href="https://thebusybiscuit.github.io/builds/TheBusyBiscuit/ExtraHeads/master/">
-    <img src="https://thebusybiscuit.github.io/builds/TheBusyBiscuit/ExtraHeads/master/badge.svg" alt="Build Server"/>
-  </a>
-</p>
 
 ## Discord
 You can find Slimefun's community on Discord!
