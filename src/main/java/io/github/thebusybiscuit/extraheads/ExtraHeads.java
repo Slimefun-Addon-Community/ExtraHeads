@@ -2,8 +2,6 @@ package io.github.thebusybiscuit.extraheads;
 
 import javax.annotation.Nonnull;
 
-import lombok.Getter;
-
 import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -13,6 +11,8 @@ import io.github.thebusybiscuit.extraheads.setup.Registry;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.updater.BlobBuildUpdater;
+
+import lombok.Getter;
 
 public class ExtraHeads extends JavaPlugin implements SlimefunAddon {
 
