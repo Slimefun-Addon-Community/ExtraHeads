@@ -1,5 +1,5 @@
 # ExtraHeads
-ExtraHeads is a [Slimefun4](https://github.com/Slimefun/Slimefun4/) Addon.<br>
+ExtraHeads is a [Slimefun4](https://github.com/Slimefun/Slimefun4/) Addon.  
 You need to install Slimefun4 in order for this plugin to work.
 
 ExtraHeads is a Slimefun4 Addon that simply adds new mob heads to the game.
@@ -9,6 +9,9 @@ You can increase your chances by using a Sword of Beheading.
 ## Download ExtraHeads
 You can download ExtraHeads right here: [Dev Builds](https://blob.build/project/ExtraHeads)
 
+### Requirements
+- Java 21+
+- Minecraft 1.18+
 
 ## Discord
 You can find Slimefun's community on Discord!
