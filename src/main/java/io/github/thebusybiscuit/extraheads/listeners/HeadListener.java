@@ -49,7 +49,7 @@ public class HeadListener implements Listener {
 
         ItemStack item = killer.getInventory().getItemInMainHand();
         SwordOfBeheading sword = (SwordOfBeheading) SlimefunItems.SWORD_OF_BEHEADING.getItem();
-        if (item.isEmpty() || !sword.isItem(item) || sword.isDisabledIn(killer.getWorld())) {
+        if (item.isEmpty() || sword == null || !sword.isItem(item) || sword.isDisabledIn(killer.getWorld())) {
             return chance;
         }
 
