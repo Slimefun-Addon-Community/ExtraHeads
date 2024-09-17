@@ -88,8 +88,10 @@ public class ItemSetup {
 
         if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_20_5)) {
             // https://minecraft-heads.com/custom-heads/head/91910-armadillo
-            registerHead(EntityType.ARMADILLO, "852b33ba294f560090752d113fe728cbc7dd042029a38d5382d65a2146068b7");
+            registerHead(EntityType.ARMADILLO, "9852b33ba294f560090752d113fe728cbc7dd042029a38d5382d65a2146068b7");
         }
+
+        ExtraHeads.getRegistry().getConfig().save();
     }
 
     private static void registerHead(EntityType type, String texture) {
