@@ -96,6 +96,11 @@ public class ItemSetup {
             registerHead(EntityType.BREEZE, "a275728af7e6a29c88125b675a39d88ae9919bb61fdc200337fed6ab0c49d65c");
         }
 
+        if (MinecraftVersionUtil.isAtLeast(21, 4)) {
+            // https://minecraft-heads.com/custom-heads/head/111644-creaking
+            registerHead(EntityType.CREAKING, "3630e03391db6c0e9c8643a59754c2d19a1f938a787150af3b3d516ba8094cda");
+        }
+
         ExtraHeads.getRegistry().getConfig().save();
     }
 
