@@ -115,8 +115,8 @@ public class ItemSetup {
             new MobHead(
                 type,
                 item,
-                new CustomItemStack(
-                    item,
+                CustomItemStack.create(
+                    item.item(),
                     "&rKill 1 " + ChatUtils.humanize(type.name()),
                     "&7Chance: &e" + chance + "%"
                 )

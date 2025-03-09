@@ -14,6 +14,6 @@ public class RecipeTypes {
 
     public static final RecipeType DECAPITATION = new RecipeType(
         new NamespacedKey(ExtraHeads.getInstance(), "decapitation"),
-        new CustomItemStack(Material.IRON_SWORD, "&6Kill the specified Mob")
+        CustomItemStack.create(Material.IRON_SWORD, "&6Kill the specified Mob")
     );
 }
