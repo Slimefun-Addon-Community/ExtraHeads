@@ -4,10 +4,10 @@ on:
   push:
     branches:
       - master
+      - experimental
 
 jobs:
   build:
-    if: startsWith(github.event.head_commit.message, '[CI skip]') == false
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -28,10 +28,22 @@ jobs:
       - name: Rename jar file
         run: mv build/libs/ExtraHeads-*.jar build/libs/ExtraHeads.jar
 
-      - name: Upload to Blob Builds
+      - name: Upload to Blob Builds (Dev)
         uses: WalshyDev/blob-builds/gh-action@main
+        if: github.ref == 'refs/heads/master'
         with:
           project: ExtraHeads
+          releaseChannel: Dev
+          file: ./build/libs/ExtraHeads.jar
+          apiToken: ${{ secrets.BLOB_BUILDS_API_TOKEN }}
+          releaseNotes: ${{ github.event.head_commit.message }}
+
+      - name: Upload to Blob Builds (Experimetal)
+        uses: WalshyDev/blob-builds/gh-action@main
+        if: github.ref == 'refs/heads/experimental'
+        with:
+          project: ExtraHeads
+          releaseChannel: Experimental
           file: ./build/libs/ExtraHeads.jar
           apiToken: ${{ secrets.BLOB_BUILDS_API_TOKEN }}
           releaseNotes: ${{ github.event.head_commit.message }}
